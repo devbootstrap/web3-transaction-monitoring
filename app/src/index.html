@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Web3JS : Monitor Transactions App</title>
+  </head>
+  <style>
+    input {
+      display: block;
+      margin-bottom: 12px;
+    }
+  </style>
+  <body>
+    <h1>Web3JS : Monitor Transactions App</h1>
+    <p>Simple Store Value <strong class="storeValue">loading...</strong> </p>
+
+    <h1>Set Value</h1>
+
+    <label for="value">Value:</label>
+    <input type="text" id="value" placeholder="Some new string value" />
+
+    <button onclick="App.setValue()">Set Value</button>
+
+    <h1>Transactions</h1>
+
+    <ol>
+      <li>Set to 'Hello World'</li>
+      <li>Set to '456'</li>
+      <li>Set to '999'</li>
+    </ol>
+
+    <p id="status"></p>
+    <p>
+      <strong>Hint:</strong> open the browser developer console to view any
+      errors and warnings.
+    </p>
+    <script src="index.js"></script>
+  </body>
+</html>

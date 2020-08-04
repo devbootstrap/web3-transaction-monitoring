@@ -1,0 +1,23 @@
+{
+  "name": "web3-transaction-monitoring",
+  "version": "1.0.0",
+  "description": "A simple app to monitor transactions using Web3js",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "truffle",
+    "smart",
+    "contracts",
+    "ethereum",
+    "web3",
+    "events",
+    "transactions"
+  ],
+  "author": "Darren Jensen (darren.jensen@devbootstrap.com)",
+  "license": "ISC"
+}
