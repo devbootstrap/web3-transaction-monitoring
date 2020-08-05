@@ -34,6 +34,7 @@ const App = {
 
     const storeValueElement = document.getElementsByClassName("storeValue")[0];
     storeValueElement.innerHTML = storeValue;
+    this.checkLastBlock();
   },
 
   setValue: async function() {
@@ -51,6 +52,24 @@ const App = {
   setStatus: function(message) {
     const status = document.getElementById("status");
     status.innerHTML = message;
+  },
+
+  checkLastBlock: async function() {
+    const { web3 } = this;
+
+    const blockNumber = await web3.eth.getBlockNumber()
+    const block = await web3.eth.getBlock(blockNumber);
+
+    console.log(`Searching block ${ blockNumber }...`);
+    if (block && block.transactions) {
+      for (let tx of block.transactions) {
+          let transaction = await web3.eth.getTransaction(tx);
+          if (this.account === transaction.from) {
+              console.log(`[+] Transaction found on block ${ blockNumber }`);
+              console.log({ address: transaction.to, timestamp: new Date() });
+          }
+      }
+    }
   },
 };
 

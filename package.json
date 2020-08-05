@@ -19,5 +19,8 @@
     "transactions"
   ],
   "author": "Darren Jensen (darren.jensen@devbootstrap.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.2.11"
+  }
 }
