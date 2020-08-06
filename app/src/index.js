@@ -56,18 +56,23 @@ const App = {
 
   checkLastBlock: async function() {
     const { web3 } = this;
+    const latest = await web3.eth.getBlockNumber()
 
-    const blockNumber = await web3.eth.getBlockNumber()
-    const block = await web3.eth.getBlock(blockNumber);
-
-    console.log(`Searching block ${ blockNumber }...`);
-    if (block && block.transactions) {
-      for (let tx of block.transactions) {
-          let transaction = await web3.eth.getTransaction(tx);
-          if (this.account === transaction.from) {
-              console.log(`[+] Transaction found on block ${ blockNumber }`);
-              console.log({ address: transaction.to, timestamp: new Date() });
+    let txStr = ''
+    for(let i = 0; i <= latest; i++ ) {
+      const block = await web3.eth.getBlock(i);
+      console.log(`Searching block ${ block.number }...`);
+      if (block && block.transactions) {
+        for (let tx of block.transactions) {
+            let transaction = await web3.eth.getTransaction(tx);
+            let data = web3.utils.hexToAscii('0x' + transaction.input.slice(138, transaction.input.length))
+            if (this.account === transaction.from && transaction.to !== null) {
+              txStr += `<li>Block ${i} : `
+              txStr += `To Address: ${transaction.to}, Data: ${data}, Timestamp: ${block.timestamp}</li>`
+            }
           }
+        const txULElement = document.getElementsByClassName("tx")[0];
+        txULElement.innerHTML = txStr
       }
     }
   },
